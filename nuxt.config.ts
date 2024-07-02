@@ -1,6 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/google-fonts"],
+  modules: [
+    "@nuxtjs/tailwindcss",
+    "@nuxtjs/google-fonts",
+    "@sidebase/nuxt-auth",
+  ],
+  auth: {
+    origin: process.env.AUTH_ORIGIN,
+    enableGlobalAppMiddleware: true,
+  },
   devtools: { enabled: false },
   googleFonts: {
     families: {

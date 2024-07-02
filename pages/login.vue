@@ -21,6 +21,7 @@
       <!-- Buttons container -->
       <div class="flex flex-col items-center mt-10 font-gaegu text-2xl">
         <button
+          @click="signIn('google')"
           class="w-full h-20 border-2 mb-4 py-4 px-4 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-800 flex items-center justify-center"
         >
           Log in with Google
@@ -37,8 +38,13 @@
 
 <script setup>
 definePageMeta({
+  auth: {
+    unauthenticatedOnly: true,
+    navigateAuthenticatedTo: "/",
+  },
   layout: false,
 });
+const { signIn } = useAuth();
 </script>
 
 <style scoped>
