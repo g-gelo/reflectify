@@ -27,6 +27,7 @@
           Log in with Google
         </button>
         <button
+          @click="signIn('facebook')"
           class="w-full h-20 border-2 py-4 px-4 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-800 flex items-center justify-center"
         >
           Log in with Facebook
