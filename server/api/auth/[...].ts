@@ -21,7 +21,12 @@ export default NuxtAuthHandler({
     (FacebookProvider as ProviderWithDefault<typeof FacebookProvider>).default({
       clientId: process.env.FACEBOOK_CLIENT_ID!,
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
-      accessTokenUrl: process.env.FACEBOOK_ACCESS_TOKEN!,
+      authorization: {
+        params: {
+          access_token: process.env.FACEBOOK_ACCESS_TOKEN!,
+          scope: "email,public_profile",
+        },
+      },
     }),
   ],
 });
