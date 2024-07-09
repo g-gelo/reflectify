@@ -18,11 +18,16 @@
     >
       <div class="bg-white p-6 rounded-lg w-10/12 max-w-lg mx-auto shadow-lg">
         <h1 class="text-2xl font-semibold mb-4">Share Your Book Journal</h1>
-        <form action="">
+        <form
+          @submit.prevent="
+            addPost(post, data?.user?.id, data?.user?.email, data?.user?.name)
+          "
+        >
           <label for="title" class="block text-lg font-medium mb-2"
             >Book Title</label
           >
           <input
+            v-model="post.title"
             id="title"
             type="text"
             placeholder="Enter the book title"
@@ -32,6 +37,7 @@
             >Favorite Quotes</label
           >
           <textarea
+            v-model="post.description"
             id="quotes"
             class="textarea textarea-info w-full mb-4"
             placeholder="Share your favorite quotes from the book"
@@ -66,28 +72,34 @@ const route = useRoute();
 const { data: allPost } = useFetch("/api/post");
 const { data } = useAuth();
 const openPostModal = ref(false);
-const closePostModal = ref(false);
 
 const post = ref({
   title: "",
   description: "",
 });
 
-const addPost = async (post) => {
-  let addedPost = null;
+const addPost = async (post, userId, userEmail, userName) => {
+  try {
+    const addedPost = await $fetch("/api/post", {
+      method: "POST",
+      body: {
+        title: post.title,
+        description: post.description,
+        userId: userId,
+        email: userEmail,
+        name: userName,
+      },
+    });
 
-  addedPost = await $fetch("/api/post", {
-    method: "POST",
-    body: {
-      title: post.title,
-      description: post.description,
-    },
-  });
-  if (addedPost) {
-    post.title = "";
-    post.description = "";
-
-    allPost.value = await $fetch("/api/post");
+    if (addedPost) {
+      post.title = "";
+      post.description = "";
+      allPost.value = await $fetch("/api/post");
+      openPostModal.value = false; // Close modal after successful post
+    }
+  } catch (error) {
+    console.error("Error adding post:", error);
+    // Handle error (e.g., show error message to user)
   }
 };
 </script>
