@@ -46,6 +46,7 @@ definePageMeta({
     unauthenticatedOnly: true,
     navigateAuthenticatedTo: "/",
   },
+  layout: false,
 });
 const { signIn } = useAuth();
 </script>

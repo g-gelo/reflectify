@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <h1>sad</h1>
-  </div>
+  <div class="mt-20 flex justify-center"></div>
 </template>
 
 <script setup>
-//
+definePageMeta({ auth: false });
 </script>
 
 <style scoped>
