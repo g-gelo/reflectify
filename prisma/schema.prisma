@@ -56,6 +56,23 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  posts         Posts[]
+}
+
+model Posts {
+  id            String   @id @default(cuid())
+  title         String
+  description   String  @db.VarChar(250)
+  privacy       Visibility @default(Public)
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}
+
+enum Visibility {
+  Public
+  Private
 }
 
 model VerificationToken {

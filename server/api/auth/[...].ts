@@ -13,6 +13,17 @@ export default NuxtAuthHandler({
   pages: {
     signIn: "/login",
   },
+  callbacks: {
+    session: ({ session, user }) => ({
+      ...session,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        image: user.image,
+      },
+    }),
+  },
   providers: [
     (GoogleProvider as ProviderWithDefault<typeof GoogleProvider>).default({
       clientId: process.env.GOOGLE_CLIENT_ID!,

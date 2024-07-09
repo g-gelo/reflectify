@@ -1,0 +1,19 @@
+export default defineEventHandler(async (event) => {
+  const body = await readBody(event);
+  let post = null;
+
+  if (body.title && body.description)
+    await event.context.prisma.posts
+      .create({
+        data: {
+          title: body.title,
+          description: body.description,
+        },
+      })
+      .then((response) => {
+        post = response;
+      });
+  return {
+    post,
+  };
+});
