@@ -1,10 +1,3 @@
-<script setup>
-definePageMeta({
-  layout: false,
-});
-const { data: examples } = useFetch("/api/example");
-</script>
-
 <template>
   <div>
     Prisma ORM Data from the database, received
@@ -12,3 +5,10 @@ const { data: examples } = useFetch("/api/example");
     <pre>{{ examples }}</pre>
   </div>
 </template>
+
+<script setup>
+definePageMeta({
+  layout: false,
+});
+const { data: examples } = useFetch("/api/example");
+</script>

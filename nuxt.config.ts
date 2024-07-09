@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   ],
   auth: {
     origin: process.env.AUTH_ORIGIN,
-    enableGlobalAppMiddleware: true,
+    globalAppMiddleware: true,
   },
   devtools: { enabled: false },
   googleFonts: {

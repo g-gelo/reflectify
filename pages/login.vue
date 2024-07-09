@@ -38,12 +38,14 @@
 </template>
 
 <script setup>
+useHead({
+  title: "Log In",
+});
 definePageMeta({
   auth: {
     unauthenticatedOnly: true,
     navigateAuthenticatedTo: "/",
   },
-  layout: false,
 });
 const { signIn } = useAuth();
 </script>

@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-definePageMeta({ middleware: "auth", layout: false });
+<script setup>
+definePageMeta({ layout: false });
 const { data, signOut } = useAuth();
 </script>
